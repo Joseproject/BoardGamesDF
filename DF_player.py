@@ -1,3 +1,4 @@
+import random
 class Player:
 
     def __init__(self):
@@ -27,7 +28,7 @@ class Player:
             self.inventory["gold"]+=self.sunDice[sunIdx][1]
         print(f"el gold que tiene el jugador es")
 
-    def buyResources(self, material, val, replaceMat, replaceVal):
+    def buyResources(self, material, val, replaceMat, replaceVal, shop):
         """ 
         Para esta función se necesita obtener el oro del jugador, la lista de objetos de la tienda,
         comprobar que articulos tienen un precio por debajo del valor de oro que posee el jugador,
