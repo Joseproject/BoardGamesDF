@@ -22,7 +22,8 @@ class Shop:
                 {"value": 2, "price": 6, "stock": 4}
             ],
             "combi":[
-                {"value":{"PV":1, "sun":1}, "price":4, "stock": 1}
+                {"value":{"PV":1, "sun":1}, "price":4, "stock": 1},
+                {"value":{"PV":1, "moon":1}, "price":4, "stock": 1}
                 
             ]
         }  
