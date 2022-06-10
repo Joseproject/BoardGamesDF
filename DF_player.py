@@ -12,6 +12,7 @@ class Player:
         self.sunDice=[]
         self.moonDice=[]
 
+
     def createDices(self):
         #Se crean ambos dados para todos los jugadores que tienen identica estructura   
         for x in range(0,6):
@@ -20,8 +21,11 @@ class Player:
         self.moonDice=self.sunDice.copy()
         self.moonDice[4:6]=[[self.matTyp[1],1], [self.matTyp[3],2]]
 
-    def throwDice(self, dice):
-        return dice[random.randint(0,5)]
+    def throwDice(self):
+        throw1=random.randint(0,5)
+        throw2=random.randint(0,5)
+        return (self.moonDice[throw1], self.sunDice[throw2])
+
 
     def anotateResource(self, sunIdx):
         if self.sunDice[sunIdx][0]=="gold" and self.inventory["gold"]<12:
@@ -44,5 +48,12 @@ class Player:
             print("no hay oro suficiente para comprar esta cara")
             #habria que tener en cuenta el estado en el cual no tenga dinero para comprar  
             #nada o se arrepienta de su acción
-    def chooseMat():
-        print(2)
+    def chooseMat(self, shop):
+        selection=""
+        for idx,x in enumerate(shop.items["combi"]):
+            if shop.items["combi"][idx]["value"] == {"PV":1, "sun":1} :
+                for idx, key in enumerate(shop.items["combi"][idx]["value"]):
+                    selection=str(idx)+":"+key+" "+selection
+                print(selection)
+                chosenMat=input("elige que recurso te interesa: ")
+                print(chosenMat)

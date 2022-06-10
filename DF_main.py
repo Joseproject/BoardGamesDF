@@ -16,11 +16,5 @@ shop=DF_shop.Shop()
 player1.createDices()
 player1.buyResources("gold",4,"gold",1, shop)
 print(player1.sunDice)
-prueba=""
-for idx,x in enumerate(shop.items["combi"]):
-    if shop.items["combi"][idx]["value"] == {"PV":1, "sun":1} :
-        for idx, key in enumerate(shop.items["combi"][idx]["value"]):
-            prueba=str(idx)+":"+key+" "+prueba
-        print(prueba)
-        chosenMat=input("elige que recurso te interesa: ")
-        print(chosenMat)
+#player1.chooseMat(shop)
+print(player1.throwDice())
