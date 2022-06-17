@@ -3,14 +3,16 @@ class Player:
 
     def __init__(self):
         self.inventory={
-            "gold":10,
+            "gold":5,
             "victoryPoints":0,
             "sun":0,
             "moon":0
         }
-        self.matTyp=["gold", "luna", "sol", "PV"]
+        self.matTyp=["gold", "moon", "sun", "PV"]
+        self.qtyMaxInventory={"gold":12, "sun":6, "moon":6}
         self.sunDice=[]
         self.moonDice=[]
+        self.ubi=["home"]
 
 
     def createDices(self):
@@ -24,13 +26,22 @@ class Player:
     def throwDice(self):
         throw1=random.randint(0,5)
         throw2=random.randint(0,5)
+        print(self.moonDice[throw1], self.sunDice[throw2])
         return (self.moonDice[throw1], self.sunDice[throw2])
 
 
-    def anotateResource(self, sunIdx):
-        if self.sunDice[sunIdx][0]=="gold" and self.inventory["gold"]<12:
-            self.inventory["gold"]+=self.sunDice[sunIdx][1]
-        print(f"el gold que tiene el jugador es")
+    def anotateResource(self):
+        for idx,x in enumerate(self.throwDice()):
+            if x[0]=="gold" and (self.inventory["gold"]+x[1])<12:
+                self.inventory["gold"]+=x[1]
+            elif x[0]=="victoryPoints":
+                self.inventory["victoryPoints"]+=x[1]
+            elif x[0]=="sun" and (self.inventory["sun"]+x[1])<self.qtyMaxInventory["sun"]:
+                self.inventory["sun"]+=x[1] 
+            elif x[0]=="moon" and (self.inventory["moon"]+x[1])<self.qtyMaxInventory["moon"]:
+                self.inventory["moon"]+=x[1]
+        print(self.inventory, idx)
+
 
     def buyResources(self, material, val, replaceMat, replaceVal, shop):
         """ 
@@ -57,3 +68,4 @@ class Player:
                 print(selection)
                 chosenMat=input("elige que recurso te interesa: ")
                 print(chosenMat)
+    
